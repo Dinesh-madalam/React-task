@@ -1,11 +1,12 @@
-const Heading1 =() => {
-    return <h1>Heading 1</h1>
+const Heading1 =(prop) => {
+        console.log(prop);
+    return ( <h1>{prop.data}</h1> )
 };
 
 export default Heading1;
 
-export const Heading2 =() => {
-    return <h2>Heading 2</h2>
+export const Heading2 = (prop) => {
+    return ( <h4>{`Number of cups : ${prop.data}`}</h4> )
 };
 
 export const Heading3 =() => {

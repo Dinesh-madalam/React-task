@@ -1,11 +1,18 @@
 const CustomImage = ()=>{
+   
     return (
-        <img src="https://media2.thrillophilia.com/images/photos/000/091/348/original/1568439407_D-dQRYcW4AA7Jz9.jpg?w=753&h=450&dpr=1.0" 
-        alt="location" 
-        width={250} 
-        height={200} 
-        />
-    )
+        <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="Bag" width={150} height={100}></img>
+    );
 }
 
 export default CustomImage;
+
+// const Imagecom = (prop) => {
+
+
+//     console.log(prop)
+//     return (
+//         <img src={prop.data} width={100} height={100}></img>
+//     );
+// }
+// export default Imagecom;

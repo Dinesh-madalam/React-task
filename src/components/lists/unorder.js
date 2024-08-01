@@ -3,9 +3,10 @@ import ListParent from "./listParent";
 const Unorderlist = () => {
     return (
         <div>
-        <ul>
-            <ListParent></ListParent>
-        </ul>
+            <ul>
+                <ListParent></ListParent>
+            </ul>
+           
         </div>
     )
 }

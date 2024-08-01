@@ -1,10 +1,12 @@
+import {Fruits} from"./fruitsdata"
+
 const  Listfruits= () =>{
-    const fruits =["Apple","Banana","Carrot"]
+    // const Fruits =[ "Apple","Beetroot" , "Carrot"]
     return (
         <>
-            {fruits.map((eachFruit) => {
-                <li>{eachFruit}</li>
-            })}
+            {Fruits.map((eachFruit) => (
+                <li>{eachFruit.name}  {eachFruit.price} /kg</li>
+            ))}
         </>
     )
 }

@@ -1,4 +1,3 @@
-import { Fruits } from "./fruits";
 
 const ListParent = () => {
     return (
@@ -8,6 +7,7 @@ const ListParent = () => {
                <li> Apple </li>
                <li>Banana</li>
                <li>Watermelon</li>
+               <li>Carrot</li>
           
         </div>
     )
