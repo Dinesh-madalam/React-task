@@ -13,13 +13,14 @@ import Orderlist from './components/lists/orderlist';
 function App(){
   return(
     <div>
-      <CustomButton/>
+      <h2>hello git</h2>
+      {/* <CustomButton/>
       <Card/>
       <CustomImage/>
       <ListParent/>
       <CustomTable/>
       <Unorderlist/>
-      <Orderlist/>
+      <Orderlist/> */}
     </div>
   )
 }
