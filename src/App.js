@@ -9,10 +9,12 @@ import "./ipl.css"
 import CustomProgressBar from './components/bootstrap/progress-bar';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Customcard from './components/card/card';
 
 
 
 const App =()=>(
+  <>  
   <div>
     <div className="nav">
       <a>Home</a>
@@ -20,27 +22,17 @@ const App =()=>(
       <a>Team Logo</a>
       <a>Cups Won</a>
       <a>Team players</a>
+     
+    </div>
+    <div>
+    <Customcard/>
+    </div>
+  </div>
     
-    </div>
-    <div className="body">
-      {IplData.map((eachipl)  => (
-        <div key={eachipl.team} style={{height:"500px", width:"300px", border:"2px solid black",margin:10}} >
-          <IplHeading team={eachipl.team}/>
-          <IplImage
-          source={eachipl.image}
-          alternate="ipl image"
-          width={200}
-          height={200}/>
-          <IplCups cups={eachipl.cups}/>
-          <Iplplayers players={eachipl.players}/>
-          <CustomProgressBar scale={eachipl.cups} style={{width:"100px"}}/>
-        </div>
-      ))}
-    </div>
-    < div className="footer">
-      <p>Designed by M_Dinesh</p>
-    </div>
-  </div>   
-)
+    </>
+   
+
+
+    );
 
 export default App;

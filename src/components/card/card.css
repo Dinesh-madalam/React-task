@@ -1,9 +1,17 @@
-.card {
-    border: 2px solid purple;
-    width: 10%;
+.card  {
+    /* border: 2px solid purple; */
+    /* width: 10%; */
     display: grid;
     margin: 20px;
+    background-color: red;
     border-radius: 10px;
-    background-color:skyblue;
-
+   
+}
+button{
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100px;
+    background-color: skyblue;
 }
