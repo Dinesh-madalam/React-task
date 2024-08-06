@@ -1,92 +1,50 @@
-import { Component } from 'react'
-import './card.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import CustomProgressBar from '../bootstrap/progress-bar';
+// import { render } from "@testing-library/react";
+import { Component } from "react";
+import axios from "axios";
 
-class Customcard extends Component {
-    state = {
-        productlist : [],
-        loader : true,
-        error : false
-    }
 
-    fetchHandler(){
-        fetch("https://fakestoreapi.com/products")
-        .then((response) => response.json())
-        .then(((data) =>{ 
-            // console.log(data)
-            return (
-                this.setState({
-                    productlist : data,
-                    loader : false
-                })
-            );
-        }))
-        
-    }
+class Customcard extends Component{
+  state={
+    content:[],
+    loader:true,
+    error:false,
+  }
+  Ehandler = async() => {
+    try{
+      let responce=await axios.get("https://restcountries.com/v3.1/all").then(res=>res)
 
-    Precentage = (rate,base) =>{
-        var percent = (rate/base)*100
-        return percent;
-    }
-
-    IncrementHandler = (targetProductId) => {
-        const UpdatedProduct = this.state.productlist.map((each) => {
-            if(each.id === targetProductId){
-                return {...each, rating : {...each.rating, rate : each.rating.rate + 1}}
-            }
-            else{
-                return {...each}
-            }
-        })
-
+      if(responce.state===200){
         this.setState({
-            productlist : UpdatedProduct
+          content :responce.data,
+          loader:false
         })
+      }
     }
-    
-    DecrementHalndler = (targetProductId) => {
-        const UpdatedProduct = this.state.productlist.map((each) => {
-            if(each.id === targetProductId){
-                return {...each, rating: {...each.rating, rate : each.rating.rate - 1}}
-            }
-            else{
-                return {...each}
-            }
-        })
-
-        this.setState({
-            productlist : UpdatedProduct
-        })
+    catch(err){
+      this.setState({
+        error:true,
+        loader:false
+      })
     }
-
-    render() {
-
-        return(
-            <>
-            {
-                this.state.loader ? 
-                <>
-                <h1>Please wait</h1>
-                <button onClick={() => this.fetchHandler()}>click</button>
-                </>: 
-                <div className='flex'>
-                {
-                    this.state.productlist.map((eachProduct) => <div className='card'>
-                        <h6>{eachProduct.title}</h6>
-                        <img src={eachProduct.image} className='image'/>
-                        <p>{`Rating : ${eachProduct.rating.rate}`}</p><br/>
-                        <CustomProgressBar scale={this.Precentage(eachProduct.rating.rate,5)}/>
-                        <button onClick={()=> this.IncrementHandler(eachProduct.id)}>Like</button>
-                        <button onClick={()=> this.DecrementHalndler(eachProduct.id)}>Dislike</button>
-                        </div>)
-                }
-                </div>
-            }
-            </>
+  }
+  componentDidMount() {
+    this.Ehandler()
+  }
+    render(){
+      return(
+        <>
+        <h2>Country</h2>
+        {
+          this.state.loader?
+          <>
+          <h1>Please Wait...</h1>
+          </>:
+          this.state.content.map((each)=><h1>{each.name.common}</h1>
         )
-    }
+        }
+        </>
+      )
+  }
 }
-
 
 export default Customcard;

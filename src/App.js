@@ -1,15 +1,17 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
+import CustomTable from './components/table/table';
 import Customcard from './components/card/card';
-// import 'bootstrap/dist/bootstarp/min.css'
+
+
 
 
 
 function App () {
   return(
     <div className='App'>
+    <CustomTable/>
     <Customcard/>
-     
     </div>
   )
 }
