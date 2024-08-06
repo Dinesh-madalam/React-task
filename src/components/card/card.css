@@ -1,17 +1,23 @@
-.card  {
-    /* border: 2px solid purple; */
-    /* width: 10%; */
-    display: grid;
-    margin: 20px;
-    background-color: red;
-    border-radius: 10px;
-   
+body{
+    background-color: aqua;
 }
-button{
-    border-radius: 10px;
-    display: flex;
+.card {
+    border: 2px solid black;
+    width: 40%;
+    border-radius: 30px;
+    margin: 100px;
+    background-color: rgb(84, 186, 84);
+}
+
+.flex{
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
     flex-direction: row;
-    justify-content: center;
-    width: 100px;
-    background-color: skyblue;
+    flex-wrap: wrap;
+}
+
+.image{
+    align-content: center;
+    width: 40%;
+    height: 40%;
 }
