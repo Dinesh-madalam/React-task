@@ -1,58 +1,95 @@
-// import { render } from "@testing-library/react";
-import { PureComponent } from "react";
+import { useState } from "react"
+import axios from "axios"
+import Orderlist from "../lists/orderlist"
 
-import "./card.css"
 
-class Customcard extends PureComponent{
-  state={
-    content:[],
-    loader:true,
-    error:false,
-  }
-  componentDidMount(){
-    this.chakan();
-  }
-  chakan= async () =>{
-    let res=await fetch("https://jsonplaceholder.typicode.com/users");
-    let data= await res.json();
+const Customcard = ()=> {
+   const [loader,setLoader]= useState(true)
+   const [state,updateState]=useState([])
+  
+   const fetchHandler = async () =>{
+    try{
+      const res=await axios.get("https://dummyjson.com/recipes")
+      const recipes= res.data.recipes
+      console.log(recipes);
 
-    let result = await fetch("https://fakestoreapi.com/products");
-    let img = await result.json();
-
-    for(let i=0 ;i<data.length;i++){
-      data[i]["image"]= img[i].image;
+      if(res.status ===200){
+        updateState(recipes)
+        setLoader(false)
+      } 
     }
-    console.log(data);
+    catch (err){
 
-    this.setState({
-      content:data,
-      loader:false,
-    })
-    
-  }
-    render(){
-      return(
-        <div className="flex">
-          {
-            this.state.loader?
-            <h1>Please Wait...</h1>:
-            <>
-            {
-              this.state.content.map((each) => {
-                return(
-                  <div key={each.id} className="card">
-                    <img src={each.image} height={150} width={150}/>
-                    <h3>{each.name}</h3>
-                    <h4>{each.email}</h4>
-                  </div>
-                )
-              })
-            }
-            </>
-          }
-        </div>
-      )
-  }
+    }
+   }
+
+   const addHandler =(TargetItem) => {
+    const newItem= [...state,TargetItem]
+    updateState(newItem)
+   }
+
+   const deleteHandler =(TargetItem) => {
+    const newItem= state.filter((each) => each.id!=TargetItem)
+    updateState(newItem)
+   }
+
+   const allDelete =() => {
+    const newItem=[]
+    updateState(newItem)
+   }
+
+  return(
+    <>
+      {
+        loader?
+        <>
+          <h2>Please Wait . . .</h2>
+          <button onClick={fetchHandler}>Fetch</button>
+        </> :
+        <table className="table table-striped">
+          <thead>
+              <tr>
+                  <th colSpan={8}><button onClick={allDelete}>Delete - List</button></th>
+              </tr>
+              <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Recipe Name</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">cuisine</th> 
+                  <th scope="col">Ingredents</th>
+                  <th scope="col">Instructions</th>
+                  <th scope="col">Add Item</th>
+                  <th scope="col">Delete Item</th>
+
+              </tr>
+
+          </thead>
+          <tbody>
+              {
+                state.map((each) => {
+                  return(
+                    <>
+                      <tr>
+                        <th scope="row">{each.id}</th>
+                        <td>{each.name}</td>
+                        <td><img src={each.image} width={100} height={100}/></td>
+                        <td>{each.cuisine}</td>
+                        <td><Orderlist list={each.ingredients}/></td>
+                        <td><Orderlist list={each.instructions}/></td>
+                        <td><button onClick={() => addHandler(each)}>Add</button></td>
+                        <td><button onClick={() => deleteHandler(each.id)}>Delete</button></td>
+                      </tr>
+                    </>
+                  )
+                })
+              }
+
+          </tbody>
+
+        </table>
+      }
+    </>
+  )
 }
 
 export default Customcard;

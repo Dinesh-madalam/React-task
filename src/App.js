@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
+import AddSquare from './addsquare/addSquare';
 import './App.css';
-
-import Customcard from './components/card/card';
+import "bootstrap"
 
 
 
@@ -10,8 +10,7 @@ import Customcard from './components/card/card';
 function App () {
   return(
     <div className='App'>
-      <h2>Alumins </h2>
-    <Customcard/>
+      <AddSquare/>
     </div>
   )
 }

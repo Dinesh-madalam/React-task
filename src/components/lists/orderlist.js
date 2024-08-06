@@ -1,12 +1,18 @@
-import ListParent from "./listParent";
 
-const Orderlist = () => { 
+
+
+const Orderlist = (prop) => {
+    const { list }=prop 
     return (
-        <div>
+       
            <ol>
-            <ListParent></ListParent>
+            {
+              list.map((eachData) => <li> {eachData}</li>)
+        
+            }
+           
            </ol>
-        </div>
+       
     )      
 }
 
