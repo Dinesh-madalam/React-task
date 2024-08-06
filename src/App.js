@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import './App.css';
-import CustomTable from './components/table/table';
+
 import Customcard from './components/card/card';
 
 
@@ -10,7 +10,7 @@ import Customcard from './components/card/card';
 function App () {
   return(
     <div className='App'>
-    <CustomTable/>
+      <h2>Alumins </h2>
     <Customcard/>
     </div>
   )

@@ -1,23 +1,18 @@
-body{
-    background-color: aqua;
-}
+
 .card {
-    border: 2px solid black;
-    width: 40%;
-    border-radius: 30px;
+    border: 2px solid none;
+    height: 300px;
+    width: 300px;
+    border-radius: 20px;
     margin: 100px;
+    box-sizing: border-box;
     background-color: rgb(84, 186, 84);
 }
 
 .flex{
-    display: grid;
-    grid-template-columns: 30% 30% 30%;
-    flex-direction: row;
+    display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
+    background-color:olivedrab;
 }
 
-.image{
-    align-content: center;
-    width: 40%;
-    height: 40%;
-}

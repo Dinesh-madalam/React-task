@@ -7,7 +7,7 @@
 import { Component } from "react";
 import axios from "axios";
 
-class CustomTable extends Component {
+class CustomTable extends Component  {
     state = {
         content: [],
         loader: true,

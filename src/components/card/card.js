@@ -1,48 +1,56 @@
 // import { render } from "@testing-library/react";
-import { Component } from "react";
-import axios from "axios";
+import { PureComponent } from "react";
 
+import "./card.css"
 
-class Customcard extends Component{
+class Customcard extends PureComponent{
   state={
     content:[],
     loader:true,
     error:false,
   }
-  Ehandler = async() => {
-    try{
-      let responce=await axios.get("https://restcountries.com/v3.1/all").then(res=>res)
-
-      if(responce.state===200){
-        this.setState({
-          content :responce.data,
-          loader:false
-        })
-      }
-    }
-    catch(err){
-      this.setState({
-        error:true,
-        loader:false
-      })
-    }
+  componentDidMount(){
+    this.chakan();
   }
-  componentDidMount() {
-    this.Ehandler()
+  chakan= async () =>{
+    let res=await fetch("https://jsonplaceholder.typicode.com/users");
+    let data= await res.json();
+
+    let result = await fetch("https://fakestoreapi.com/products");
+    let img = await result.json();
+
+    for(let i=0 ;i<data.length;i++){
+      data[i]["image"]= img[i].image;
+    }
+    console.log(data);
+
+    this.setState({
+      content:data,
+      loader:false,
+    })
+    
   }
     render(){
       return(
-        <>
-        <h2>Country</h2>
-        {
-          this.state.loader?
-          <>
-          <h1>Please Wait...</h1>
-          </>:
-          this.state.content.map((each)=><h1>{each.name.common}</h1>
-        )
-        }
-        </>
+        <div className="flex">
+          {
+            this.state.loader?
+            <h1>Please Wait...</h1>:
+            <>
+            {
+              this.state.content.map((each) => {
+                return(
+                  <div key={each.id} className="card">
+                    <img src={each.image} height={150} width={150}/>
+                    <h3>{each.name}</h3>
+                    <h4>{each.email}</h4>
+                  </div>
+                )
+              })
+            }
+            </>
+          }
+        </div>
       )
   }
 }
