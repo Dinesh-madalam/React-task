@@ -1,16 +1,14 @@
 // import logo from './logo.svg';
-import AddSquare from './addsquare/addSquare';
 import './App.css';
-import "bootstrap"
-
-
+import SamsungForm from './components/form/samsungForm';
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 
 function App () {
   return(
-    <div className='App'>
-      <AddSquare/>
+    <div className=''>
+      <SamsungForm/>
     </div>
   )
 }
