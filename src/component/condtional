@@ -1,0 +1,16 @@
+
+
+const Conditional = (prop) =>{
+    const {array}=prop
+    return(
+        <>
+            {array.length===0 ?("Empty"
+
+            ):(
+                <h2>array Contains{array.length}</h2>
+            )}
+        </>
+    )
+}
+
+export default Conditional;
